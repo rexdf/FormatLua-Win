@@ -52,4 +52,4 @@ class FormatLuaCommand(sublime_plugin.TextCommand):
         sourcecode = p.stdout.read()
         os.remove(tmp)
         os.chdir(_tmp)
-        return sourcecode.decode("utf-8")
+        return sourcecode.decode("utf-8").replace('\r', '')
