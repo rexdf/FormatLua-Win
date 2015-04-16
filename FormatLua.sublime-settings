@@ -1,5 +1,5 @@
 {
    "lua_path": "/usr/local/bin/lua",
-   "LUA_DEV": "/usr/local/bin/Lua/5.1",
-   "LUA_PATHS": ";;/usr/local/bin/Lua/5.1/?.luac"
+   "LUA_DEV": "",
+   "LUA_PATHS": ";;"
 }
