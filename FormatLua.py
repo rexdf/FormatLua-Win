@@ -37,14 +37,16 @@ class FormatLuaCommand(sublime_plugin.TextCommand):
         fileHandle = open(tmp, "wb")
         fileHandle.write(s)
         fileHandle.close()
-        settings = sublime.load_settings(package + ".sublime-settings")
+        settings = sublime.load_settings(package.split('-')[0] + ".sublime-settings")
         lua_path = settings.get("lua_path")
         cmd = lua_path + " formatter.lua --file " + tmp
         # print cmd
+        env = {"LUA_DEV": settings.get("LUA_DEV"),
+               "LUA_PATH": settings.get("LUA_PATHS")}
         startupinfo = subprocess.STARTUPINFO()
         startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
         p = subprocess.Popen(
-            cmd, shell=False,
+            cmd, shell=False, env=env,
             startupinfo=startupinfo,
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         sourcecode = p.stdout.read()
