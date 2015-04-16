@@ -3,8 +3,7 @@ import subprocess
 import sublime
 import sublime_plugin
 
-version = int(sublime.version())
-package = "FormatLua"
+package = __name__.split('.')[0]
 
 
 class FormatLuaCommand(sublime_plugin.TextCommand):
