@@ -41,6 +41,8 @@ class FormatLuaCommand(sublime_plugin.TextCommand):
         lua_path = settings.get("lua_path")
         cmd = lua_path + " formatter.lua --file " + tmp
         # print cmd
+        # Per http://bugs.python.org/issue8557 shell=True is required to
+        # get $PATH on Windows. Yay portable code.
         env = {"LUA_DEV": settings.get("LUA_DEV"),
                "LUA_PATH": settings.get("LUA_PATHS")}
         startupinfo = subprocess.STARTUPINFO()
